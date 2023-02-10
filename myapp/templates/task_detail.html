@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Crud Application</title>
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center display-3 py-2">Detail Task</h1> 
+                {{error}} 
+               
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <button class="btn btn-primary mt-2 mb-2">Update</button>
+                </form>
+                <div class="d-flex justify-content-between">
+
+                        <form action="{% url 'complete_task' task.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-success btn-block">Complete</button>
+                        </form>
+
+
+                        <form action="{% url 'delete_task' task.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-block">Delete</button>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}
